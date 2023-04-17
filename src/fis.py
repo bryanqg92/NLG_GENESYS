@@ -9,7 +9,7 @@ class fis:
     def __init__(self):
         self.prop = np.arange(-2,2,0.0007)
         self.der = np.arange(-2,2,0.0007)
-        self.sal_mot = np.arange(-100,100.07,0.07)
+        self.sal_mot = np.arange(-100.07,100.07,0.07)
 
         # Antecedente de la entrada proporcional P y sus valores para conjuntos triangulares
 
