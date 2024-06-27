@@ -1,4 +1,4 @@
-from fis import *
+from fis.fis import *
 import sys
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -22,20 +22,12 @@ warnings.filterwarnings("ignore", message="X does not have valid feature names, 
 class NLG_Genesys():
 
     def __init__(self):
-
-        self.fis = fis()
         
         with open('tokenizer.json', 'r', encoding='utf-8') as f:
             tokenizer_json = f.read()
             self.tokenizer = tokenizer_from_json(tokenizer_json)
 
-
-        #print(self.tokenizer.word_index)
-
-    
-        #self.Scaler = joblib.load('src/scaler.joblib')
         self.num_decoder_tokens = len(self.tokenizer.word_index) + 1
-
         self.model = seq2seqLSTM(4, 64, self.num_decoder_tokens)
         self.model.load_state_dict(torch.load('seq2seqLSTM_model.pt'))
 
@@ -58,26 +50,19 @@ class NLG_Genesys():
             elif i == 3:
                 name,_= self.fis.get_membership(antecedent_name='salida',value=input[i])
                 fuzzy_set.append(name)
-        #print('Fuzzy sets')
-        #print(fuzzy_set)
-        # Normalize and get tensor for decoder inputs        
-        #enc_test_in = self.Scaler.transform(np.array(input).reshape(1,-1))
+
         enc_test_in = np.array(input).astype((float)).reshape(1,-1)   
         enc_test_in = torch.tensor(enc_test_in.reshape(1,1,-1)).float()
 
         #Tokenize fuzzy set names and padding
         fuzzy_set=' '.join(fuzzy_set)
         dec_test_in = self.tokenizer.texts_to_sequences([fuzzy_set])
-        #print('Tokens sequences')
-        #print(dec_test_in)
         dec_test_in = pad_sequences(dec_test_in, maxlen=self.num_decoder_tokens, padding='post', truncating='post')
-        #print(dec_test_in)
 
         # get decoder input tensor
         dec_test_in = torch.tensor(dec_test_in).long()
 
         self.model.eval()
-        # Hacer predicciones con el modelo cargado
         with torch.no_grad():
             preds = self.model(enc_test_in, dec_test_in)
             _, predicts = torch.max(preds.data, 1)
@@ -135,21 +120,8 @@ except FileNotFoundError:
     print("Ruta incorrecta o no existe archivo")
 
 
-
-## Obtener la lista
-#numeros_str = sys.argv[1]  # el primer parámetro
-#pdlr = [[float(n) for n in numeros_str.split(",")]]
-#
-## Obtener el nombre de archivo
-#nombre_archivo = sys.argv[2]  # el segundo parámetro
-#
-
-
 modelo = NLG_Genesys()
 
-#for i in range(len(dataset)):
-#    resultado = modelo.predict(dataset[i])
-#    print(resultado)
 nombre_archivo = input('Nombre archivo de salida: ')
 with open(fr'C:\Users\leand\Documents\LEANDRO\UBA\CEIA\PROYECTO DE GRADO\src\/{nombre_archivo}', 'w') as f:
     for i in range(len(dataset)):

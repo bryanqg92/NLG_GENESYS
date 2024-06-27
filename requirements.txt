@@ -1,0 +1,9 @@
+torch
+tensorflow
+pandas
+scikit-fuzzy
+numpy
+fastapi
+ipykernel
+keras
+matplotlib
