@@ -22,6 +22,7 @@ The project includes a /Research directory containing the experiments conducted 
 ## Model Usage
 
 1. Install dependencies: `pip install -r requirements.txt`
+2. export ```PYTHONPATH="pwd"``` replace pwd with path of the project root directory
 2. Initialize the app with uvicorn: `uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
 3. Test the API at `localhost:8000/docs`
 
