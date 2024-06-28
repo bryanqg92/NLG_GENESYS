@@ -7,3 +7,5 @@ fastapi
 ipykernel
 keras
 matplotlib
+python-multipart
+uvicorn

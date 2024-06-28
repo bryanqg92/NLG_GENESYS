@@ -1,4 +1,4 @@
-*.pyc
 src/nlg.py
-__pycache__/
 measure_time.py
+__pycache__/
+*.pyc
