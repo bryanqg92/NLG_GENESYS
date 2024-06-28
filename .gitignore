@@ -1,4 +1,5 @@
 src/nlg.py
+src/main.py
 measure_time.py
 __pycache__/
 *.pyc
