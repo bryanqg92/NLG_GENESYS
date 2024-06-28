@@ -1,4 +1,4 @@
-from data_utils.fis.fis import FIS
+from src.data_utils.fis.fis import FIS
 
 """
 Diccionario que mapea los nombres de los antecedentes a sus respectivos índices.

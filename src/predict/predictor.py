@@ -1,8 +1,8 @@
 import torch
 import numpy as np
-from models.seq2seq_model import seq2seqLSTM
-from data_utils.TextTokenizer.TextTokenizer import *
-from preprocessing.ConsolidateModelInputs import ConsolidateModelInputs
+from src.models.seq2seq_model import seq2seqLSTM
+from src.data_utils.TextTokenizer.TextTokenizer import *
+from src.preprocessing.ConsolidateModelInputs import ConsolidateModelInputs
 
 class Predictor:
     """

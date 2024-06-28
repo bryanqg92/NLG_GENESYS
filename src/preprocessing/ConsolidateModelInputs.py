@@ -1,5 +1,5 @@
-from preprocessing.Text2PaddingSequences import Text2PaddingSequences
-from preprocessing.GetFuzzySetNames import get_fuzzy_names
+from src.preprocessing.Text2PaddingSequences import Text2PaddingSequences
+from src.preprocessing.GetFuzzySetNames import get_fuzzy_names
 import numpy as np
 
 class ConsolidateModelInputs:

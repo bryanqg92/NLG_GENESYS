@@ -1,4 +1,4 @@
-from data_utils.TextTokenizer.TextTokenizer import TextTokenizer
+from src.data_utils.TextTokenizer.TextTokenizer import TextTokenizer
 import numpy as np
 
 class Text2PaddingSequences:
