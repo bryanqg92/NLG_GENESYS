@@ -9,3 +9,4 @@ keras
 matplotlib
 python-multipart
 uvicorn
+matplotlib
